@@ -1,5 +1,6 @@
 {
   "name": "test-webhook",
+  "private": true,
   "version": "1.0.0",
   "main": "server.mjs",
   "type": "module",
@@ -7,6 +8,7 @@
     "start": "node server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": { "node": ">=18" },
   "keywords": [],
   "author": "",
   "license": "ISC",
