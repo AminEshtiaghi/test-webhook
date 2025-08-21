@@ -1,2 +1,8 @@
-# test-webhook
-A very simple node app to get webhook and log the payload inside the root
+# Test Webhook
+This is a node.js example project for testing webhooks
+
+Getting Started
+First, install and run the development server:
+
+npm install
+npm start
