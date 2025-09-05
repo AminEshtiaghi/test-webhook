@@ -84,6 +84,8 @@ const server = http.createServer((req, res) => {
     console.log('\n=== REQUEST HEADERS ===');
     console.dir(redactHeaders(req.headers), { depth: null });
 
+    console.log('=== RAW BODY BASE64 ===');
+    console.log(raw.toString('base64'));   // safest to replay
     console.log('=== REQUEST BODY (raw) ===');
     console.log(safePreview(text, LOG_TRUNCATE_BYTES));
 
