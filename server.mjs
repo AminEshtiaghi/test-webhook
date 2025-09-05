@@ -28,7 +28,7 @@ function isValidXeroSignature(rawBodyBuf, headerVal) {
 
 function redactHeaders(headers) {
   const out = { ...headers };
-  for (const key of ['authorization', 'cookie', 'x-xero-signature', 'x-api-key']) {
+  for (const key of ['authorization', 'cookie']) {
     if (key in out) out[key] = '[redacted]';
   }
   return out;
