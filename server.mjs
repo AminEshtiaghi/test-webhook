@@ -54,6 +54,7 @@ const server = http.createServer((req, res) => {
       bodyLength: raw.length
     };
 
+    console.log('body ->', JSON.stringify(payload));
     console.log('Webhook ->', JSON.stringify(payload));
 
     res.writeHead(valid ? 200 : 401, { 'Content-Type': 'application/json' });
@@ -64,6 +65,30 @@ const server = http.createServer((req, res) => {
     res.statusCode = 400;
     res.end();
   });
+});
+
+// Simple logging middleware
+app.use((req, res, next) => {
+  console.log("=== HEADERS ===");
+  console.dir(req.headers, { depth: null });
+
+  // If JSON: log both parsed and raw body
+  if (req.is("application/json")) {
+    console.log("=== BODY (parsed) ===");
+    console.dir(req.body, { depth: null });
+
+    console.log("=== BODY (raw) ===");
+    console.log(req.rawBody || "");
+  } else {
+    // For non-JSON, you may only have rawBody or urlencoded parsed body
+    console.log("=== BODY (parsed/urlencoded) ===");
+    console.dir(req.body, { depth: null });
+
+    console.log("=== BODY (raw, if captured) ===");
+    console.log(req.rawBody || "");
+  }
+
+  next();
 });
 
 server.listen(PORT, HOST, () => {
